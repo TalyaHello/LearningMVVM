@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LearningMVVM
+namespace LearningMVVM.Models
 {
     static class MathFuncs
     {

@@ -3,22 +3,36 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:LearningMVVM"
+        xmlns:local="clr-namespace:LearningMVVM.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.DataContext>
-        <local:AdditionVM/>
+        <local:ListVM/>
         <!-- Создаем новый VM и соединяем его со View -->
     </Window.DataContext>
     <Grid>
-        <Label Content="Number 1" HorizontalAlignment="Left" Margin="34,20,0,0" VerticalAlignment="Top" Height="27" Width="87"/>
-        <Label Content="Number 2" HorizontalAlignment="Left" Margin="172,20,0,0" VerticalAlignment="Top" Height="27" Width="87"/>
-        <Label Content="Result" HorizontalAlignment="Left" Margin="313,20,0,0" VerticalAlignment="Top" Height="27" Width="87"/>
+        <Label Content="1) First example of adding 2 numbers:" HorizontalAlignment="Left" Margin="29,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="4.006,0.163" Width="203" Background="#FFEA7F7F"/>
+        <Label Content="Number 1" HorizontalAlignment="Left" Margin="29,45,0,0" VerticalAlignment="Top" Height="27" Width="69"/>
+        <Label Content="Number 2" HorizontalAlignment="Left" Margin="121,45,0,0" VerticalAlignment="Top" Height="27" Width="66"/>
+        <Label Content="Result" HorizontalAlignment="Left" Margin="208,45,0,0" VerticalAlignment="Top" Height="27" Width="67"/>
         <!--Binding, собственно, соединяет текстовое поле со свойством в VM -->
         <!--UpdateSourceTrigger, в данном случае, выполняет передачу значение в VM в момент ввода -->
-        <TextBox Text="{Binding Number1, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="34,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Background="#FFB2AFAF"/>
-        <TextBox Text="{Binding Number2, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="172,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Background="#FFB2AFAF"/>
-        <TextBox Text="{Binding Result, Mode=OneWay}" IsReadOnly="True" HorizontalAlignment="Left" Margin="313,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Background="#FFB2AFAF"/>
+        <TextBox Text="{Binding Number1, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="34,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Background="#FFB2AFAF"/>
+        <TextBox Text="{Binding Number2, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="121,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="66" Background="#FFB2AFAF"/>
+        <TextBox Text="{Binding Result, Mode=OneWay}" IsReadOnly="True" HorizontalAlignment="Left" Margin="208,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" Background="#FFB2AFAF"/>
+
+        <Label Content="2) Snd example with list:" HorizontalAlignment="Left" Margin="29,108,0,0" VerticalAlignment="Top" RenderTransformOrigin="4.006,0.163" Width="203" Background="#FFEA7F7F"/>
+        <TextBox x:Name="TheNumber" HorizontalAlignment="Left" Margin="32,149,0,0" VerticalAlignment="Top" Width="132" Height="28" RenderTransformOrigin="0.331,1.816"/>
+        <Button Content="Add" 
+                Command="{Binding AddCommand}" 
+                CommandParameter="{Binding ElementName=TheNumber, Path=Text}" 
+                HorizontalAlignment="Left" Margin="184,148,0,0" VerticalAlignment="Top" Height="29" Width="48"/>
+        <ListBox x:Name="TheListBox" ItemsSource="{Binding ListPublicValues}" Margin="34,182,636,83"/>
+        <Button Content="Remove" 
+                Command="{Binding RemoveCommand}" 
+                CommandParameter="{Binding ElementName=TheListBox, Path=SelectedIndex}"
+                HorizontalAlignment="Left" Margin="184,182,0,0" VerticalAlignment="Top" Height="30" Width="48"/>
+        <TextBox Text="{Binding Sum, Mode=OneWay}" HorizontalAlignment="Left" Margin="34,356,0,0" VerticalAlignment="Top" Width="130" Height="30" RenderTransformOrigin="0.331,1.816"/>
 
     </Grid>
 </Window>
