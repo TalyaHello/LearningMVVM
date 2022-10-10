@@ -1,11 +1,12 @@
-﻿using System;
+﻿using LearningMVVM.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LearningMVVM
+namespace LearningMVVM.ViewModels
 {
     public class AdditionVM : INotifyPropertyChanged
     {
